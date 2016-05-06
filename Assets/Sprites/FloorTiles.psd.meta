@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 25a6b8ce80b40504d9d88fce4959f087
-timeCreated: 1462226994
+timeCreated: 1462480876
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -59,77 +59,77 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 480.8
-        width: 1200
-        height: 120.2
+        y: 640.8
+        width: 1600
+        height: 160.2
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -600, y: 61.299988}
-        - {x: -600, y: -59.700012}
-        - {x: 600, y: -59.700012}
-        - {x: 600, y: 61.299988}
+      - - {x: -800, y: 81.29999}
+        - {x: -800, y: -79.70001}
+        - {x: 800, y: -79.70001}
+        - {x: 800, y: 81.29999}
     - name: Floor Tiles_1
       rect:
         serializedVersion: 2
         x: 0
-        y: 360.8
-        width: 1200
-        height: 120.2
+        y: 480.8
+        width: 1600
+        height: 160.2
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -600, y: 61.299988}
-        - {x: -600, y: -59.700012}
-        - {x: 600, y: -59.700012}
-        - {x: 600, y: 61.299988}
+      - - {x: -800, y: 81.29999}
+        - {x: -800, y: -79.70001}
+        - {x: 800, y: -79.70001}
+        - {x: 800, y: 81.29999}
     - name: Floor Tiles_2
       rect:
         serializedVersion: 2
         x: 0
-        y: 240.8
-        width: 1200
-        height: 120.2
+        y: 320.8
+        width: 1600
+        height: 160.2
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -600, y: 61.300003}
-        - {x: -600, y: -59.699997}
-        - {x: 600, y: -59.699997}
-        - {x: 600, y: 61.300003}
+      - - {x: -800, y: 81.29999}
+        - {x: -800, y: -79.70001}
+        - {x: 800, y: -79.70001}
+        - {x: 800, y: 81.29999}
     - name: Floor Tiles_3
       rect:
         serializedVersion: 2
         x: 0
-        y: 120.8
-        width: 1200
-        height: 120.2
+        y: 160.8
+        width: 1600
+        height: 160.2
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -600, y: 61.300003}
-        - {x: -600, y: -59.699997}
-        - {x: 600, y: -59.699997}
-        - {x: 600, y: 61.300003}
+      - - {x: -800, y: 81.3}
+        - {x: -800, y: -79.7}
+        - {x: 800, y: -79.7}
+        - {x: 800, y: 81.3}
     - name: Floor Tiles_4
       rect:
         serializedVersion: 2
         x: 0
         y: 0.80000305
-        width: 1200
-        height: 120.2
+        width: 1600
+        height: 160.2
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -600, y: 61.300003}
-        - {x: -600, y: -59.699997}
-        - {x: 600, y: -59.699997}
-        - {x: 600, y: 61.300003}
+      - - {x: -800, y: 81.3}
+        - {x: -800, y: -79.7}
+        - {x: 800, y: -79.7}
+        - {x: 800, y: 81.3}
     outline: []
   spritePackingTag: 
   userData: 
