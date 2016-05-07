@@ -12,6 +12,7 @@ public class Bounce : MonoBehaviour
 
     bool firstVelocityStored = false;
     bool reset = false;
+    bool wasntBouncing = false;
 
     Vector2 initialVelocity;
     Vector2 originalVelocity;
@@ -21,6 +22,7 @@ public class Bounce : MonoBehaviour
     int timesPressed = 0;
 
     bool rolling = false;
+    bool bounce = true;
 
     float jumpVelocity = 0f;
     float gravityLevel = 1f;
@@ -28,30 +30,27 @@ public class Bounce : MonoBehaviour
 
     void Update()
     {
-        BounceMode();
-        RollMode();
+        TempController();
+        ModeController();
+        Debug.Log("CurrentV, " + initialVelocity);
     }
 
     void RollMode()
     {
-        if (Input.GetKeyDown("a") && rolling == false)
-        {
-            gameObject.GetComponent<CircleCollider2D>().sharedMaterial = rolly;
-            gameObject.GetComponent<Bounce>().enabled = false;
-            iTween.RotateBy(gameObject, iTween.Hash("z", -1f, "easetype", "linear", "looptype", iTween.LoopType.loop));
-            rolling = true;
-        }
-        if (Input.GetKeyDown("a") && rolling == true)
-        {
-            gameObject.GetComponent<CircleCollider2D>().sharedMaterial = bouncy;
-            gameObject.GetComponent<Bounce>().enabled = true;
-            rolling = false;
-        }
+        wasntBouncing = true;
+        gameObject.GetComponent<CircleCollider2D>().sharedMaterial = rolly;
+        gameObject.GetComponent<Bounce>().enabled = false;
+        iTween.RotateBy(gameObject, iTween.Hash("z", -1f, "easetype", "linear", "looptype", iTween.LoopType.loop));
+        rolling = true;
     }
 
     void BounceMode()
     {
         gameObject.GetComponent<Rigidbody2D>().gravityScale = gravityLevel;
+        if (wasntBouncing == true)
+        {
+            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 40));
+        }
         if (Input.GetButtonDown("Jump"))
         {
             timesPressed++;
@@ -68,44 +67,72 @@ public class Bounce : MonoBehaviour
         }
     }
 
+    void ModeController()
+    {
+        if (bounce == true)
+        {
+            BounceMode();
+        }
+        if (rolling == true)
+        {
+            RollMode();
+        }
+    }
+
+    void TempController()
+    {
+        if (Input.GetKeyDown("r"))
+        {
+            rolling = true;
+            bounce = false;
+        }
+        if (Input.GetKeyDown("b"))
+        {
+            rolling = false;
+            bounce = true;
+        }
+    }
+
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        gravityLevel = 1;
-        if (coll.gameObject.tag == "Floor")
+        if (bounce == true)
         {
-            if (!firstVelocityStored)
+            gravityLevel = 1;
+            if (coll.gameObject.tag == "Floor")
             {
-                //Debug.Log("poop");
-                initialVelocity = gameObject.GetComponent<Rigidbody2D>().velocity;
-                originalVelocity = initialVelocity;
-                Debug.Log("velocityO, " + originalVelocity);
-                firstVelocityStored = true;
+                if (!firstVelocityStored)
+                {
+                    //Debug.Log("poop");
+                    initialVelocity = gameObject.GetComponent<Rigidbody2D>().velocity;
+                    originalVelocity = initialVelocity;
+                    Debug.Log("velocityO, " + originalVelocity);
+                    firstVelocityStored = true;
+                }
+                if (jumpMultiplier == currentJumpMultiplier)
+                {
+                    //Debug.Log("It");
+                    reset = true;
+                    jumpMultiplier = 1;
+                }
+                else
+                {
+                    currentJumpMultiplier = jumpMultiplier;
+                    reset = false;
+                }
+                timesPressed = 0;
             }
-            if (jumpMultiplier == currentJumpMultiplier)
+            if (!reset)
             {
-                //Debug.Log("It");
-                reset = true;
-                jumpMultiplier = 1;
+                gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, initialVelocity.y - jumpVelocity);
+                Debug.Log(initialVelocity);
+                Debug.Log(gameObject.GetComponent<Rigidbody2D>().velocity);
             }
             else
             {
-                currentJumpMultiplier = jumpMultiplier;
-                reset = false;
+                gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, originalVelocity.y);
+                jumpVelocity = 0;
             }
-            timesPressed = 0;
         }
-        if(!reset)
-        {
-            gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, initialVelocity.y - jumpVelocity);
-            Debug.Log(initialVelocity);
-            Debug.Log(gameObject.GetComponent<Rigidbody2D>().velocity);
-        }
-        else
-        {
-            gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, originalVelocity.y);
-            jumpVelocity = 0;
-        }
-
     }
 }
