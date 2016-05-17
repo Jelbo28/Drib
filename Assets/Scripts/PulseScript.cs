@@ -9,7 +9,7 @@ public class PulseScript : MonoBehaviour
     }
     public void Pulse()
     {
-        Debug.Log("Aram is amazing.");
+        //Debug.Log("Aram is amazing.");
         iTween.ScaleFrom(this.gameObject, new Vector3(0.6f,0.6f,0f), 1.5f);
     }
 }

@@ -9,7 +9,8 @@ public class Bounce : MonoBehaviour
     PhysicsMaterial2D rolly;
     [SerializeField]
     PhysicsMaterial2D bouncy;
-
+    [SerializeField]
+    GameObject audioController;
     bool firstVelocityStored = false;
     bool reset = false;
     bool wasntBouncing = false;
@@ -24,7 +25,7 @@ public class Bounce : MonoBehaviour
     bool rolling = false;
     bool bounce = true;
 
-    float jumpVelocity = 0f;
+    float jumpVelocity;
     float gravityLevel = 1f;
     #endregion
 
@@ -101,6 +102,7 @@ public class Bounce : MonoBehaviour
             gravityLevel = 1;
             if (coll.gameObject.tag == "Floor")
             {
+                audioController.GetComponent<Audio>().BallBeat(jumpVelocity);
                 if (!firstVelocityStored)
                 {
                     //Debug.Log("poop");
